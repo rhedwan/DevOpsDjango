@@ -7,6 +7,7 @@ from .views import (
     CommentAPIView,
     DownVoteAPIView,
     UpVoteAPIView,
+    HomePageView
 )
 
 routers = DefaultRouter()
@@ -14,6 +15,7 @@ routers.register("authlibrary", AuthLibraryView, basename="auth")
 app_name = ""
 
 urlpatterns = [
+    path("", HomePageView.as_view()),
     path("", include(routers.urls)),
     path("<int:pk>/create_comment", CommentAPIView.as_view(), name="create-comment"),
     path("comment/<int:pk>/create_upvote", UpVoteAPIView.as_view(), name="create-upvote"),
