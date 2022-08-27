@@ -4,6 +4,7 @@ from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
 from .models import AuthLibrary, CodeSnippet, Comment, DownVote, UpVote
+from django.views.generic import TemplateView
 from .serializers import (
     AuthLibrarySerializer,
     CodeSnippetSerializer,
@@ -12,12 +13,16 @@ from .serializers import (
     UpVoteSerializer,
 )
 
+
 # Create your views here.
+class HomePageView(TemplateView):
+    template_name = 'home.html'
 
 
 class AuthLibraryView(viewsets.ModelViewSet):
     serializer_class = AuthLibrarySerializer
     queryset = AuthLibrary.objects.all()
+
     # authentication_classes = [TokenAuthentication]
 
     # def get_permissions(self):
